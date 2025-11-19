@@ -2,7 +2,7 @@ function FiguresPage() {
   const figures = ["Журавль", "Лиса", "Лотос", "Роза", "Рыба", "Свинья"];
 
   return (
-    <PageContainer>
+    <>
       <section className="mb-6 space-y-3">
         <div className="flex flex-col md:flex-row gap-3 md:items-center">
           <label className="text-sm font-medium">Фильтр</label>
@@ -38,7 +38,7 @@ function FiguresPage() {
           ))}
         </div>
       </section>
-    </PageContainer>
+    </>
   );
 }
 

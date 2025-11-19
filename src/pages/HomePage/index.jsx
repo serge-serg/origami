@@ -1,6 +1,7 @@
+import TopicCard from "../../components/TopicCard";
 function HomePage() {
   return (
-    <PageContainer>
+    <>
       <section className="mb-8">
         <h1 className="text-2xl md:text-3xl font-semibold mb-3">
           Оригами — искусство гармонии и творчества
@@ -20,7 +21,7 @@ function HomePage() {
           <TopicCard title="Коробки" />
         </div>
       </section>
-    </PageContainer>
+    </>
   );
 }
 

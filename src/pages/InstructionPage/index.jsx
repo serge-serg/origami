@@ -2,7 +2,7 @@ function InstructionPage() {
   const steps = [1, 2, 3, 4];
 
   return (
-    <PageContainer>
+    <>
       <h1 className="text-2xl font-semibold mb-4">Название фигуры</h1>
       <div className="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)]">
         <div className="space-y-6">
@@ -26,7 +26,7 @@ function InstructionPage() {
           <div className="w-full aspect-square bg-gray-300 rounded" />
         </div>
       </div>
-    </PageContainer>
+    </>
   );
 }
 

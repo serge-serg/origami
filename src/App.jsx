@@ -6,7 +6,7 @@ import BasicFormsPage from "./pages/BasicFormsPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-export default function App() {
+export default function Appрол() {
   return (
     <BrowserRouter>
       <Header />
