@@ -2,8 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box
+}
+body, html {
+  margin: 0;
+  padding: 0;
+}
 body {
-  @apply text-slate-900;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  @apply text-slate-900 bg-[#FEF4F4];
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+header, footer {
+  @apply bg-[#E9DEE5];
+}
+header {
+  height: 130px;
+}
+footer {
+  height: 189px;
+}
+main {
+  min-height: calc(100vh - 319px);
+}
+
+.logo {
+  font-family: "Italiana", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }

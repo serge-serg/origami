@@ -1,12 +1,14 @@
-function TopicCard({ title }) {
+function TopicCard({ title, direction, children }) {
   return (
-    <div className="bg-white/70 rounded-xl p-4 flex flex-col gap-3 shadow-sm">
-      <div className="w-16 h-16 bg-gray-300 rounded self-center" />
-      <h3 className="font-semibold text-lg text-center">{title}</h3>
-      <p className="text-xs leading-snug text-center">
-        Краткое описание темы. Здесь можно рассказать, какие модели входят в
-        раздел и чем они интересны.
-      </p>
+    <div className={`flex mb-2.5 max-w-[550px] ${direction === "l" ? "md:ml-auto" : "md:mr-auto"}`}>
+      <div>
+        <h3 className="text-lg h-[43px] md:text-[32px] text-right pr-14 md:pr-4">{title}</h3>
+        <p className="text-right">
+          Краткое описание темы. Здесь можно рассказать, какие модели входят в
+          раздел и чем они интересны.
+        </p>
+      </div>
+      {children}
     </div>
   );
 }

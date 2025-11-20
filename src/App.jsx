@@ -6,13 +6,13 @@ import BasicFormsPage from "./pages/BasicFormsPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-export default function Appрол() {
+export default function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <Header className="max-w-5xl mx-auto" />
 
-      <main className="min-h-screen bg-mf-pink">
-        <div className="max-w-5xl mx-auto px-4 py-6 md:py-10">
+      <main className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto px-4">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/figures" element={<FiguresPage />} />
