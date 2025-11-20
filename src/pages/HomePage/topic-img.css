@@ -1,0 +1,13 @@
+.topic-img {
+  width: var(--w-mobile);
+  height: var(--h-mobile);
+  margin-left: var(--ml-mobile);
+}
+
+@media (min-width: 768px) {
+  .topic-img {
+    width: var(--w-desktop);
+    height: var(--h-desktop);
+    margin-left: var(--ml-desktop);
+  }
+}

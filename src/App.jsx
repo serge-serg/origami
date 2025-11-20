@@ -15,7 +15,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto px-4">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/figures" element={<FiguresPage />} />
+            <Route path="/all-figures" element={<FiguresPage />} />
             <Route path="/instruction/:id" element={<InstructionPage />} />
             <Route path="/basic-forms" element={<BasicFormsPage />} />
           </Routes>

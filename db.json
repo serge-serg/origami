@@ -1,0 +1,152 @@
+{
+  "homepage": [
+    {
+      "id": 1,
+      "filename": "bird.png",
+      "alt": "Птицы",
+      "width": 125,
+      "mWidth": 65,
+      "height": 149,
+      "mHeight": 76
+    },
+    {
+      "id": 2,
+      "filename": "boat.png",
+      "alt": "Лодки",
+      "width": 232,
+      "mWidth": 112,
+      "height": 95,
+      "mHeight": 48
+    },
+    {
+      "id": 3,
+      "filename": "box.png",
+      "alt": "Цветы",
+      "width": 125,
+      "mWidth": 82,
+      "height": 149,
+      "mHeight": 102
+    },
+    {
+      "id": 4,
+      "filename": "flower.png",
+      "alt": "Коробки",
+      "width": 176,
+      "mWidth": 99,
+      "height": 149,
+      "mHeight": 81
+    }
+  ],
+  "allFigures": [
+    {
+      "id": 1,
+      "filename": "журавль.png",
+      "alt": "Журавль",
+      "width": 136,
+      "height": 92,
+      "type": "Животные",
+      "complexity": "Сложный",
+      "size": "Маленький"
+    },
+    {
+      "id": 2,
+      "filename": "лиса.png",
+      "alt": "Лиса",
+      "width": 136,
+      "height": 92,
+      "type": "Животные",
+      "complexity": "Сложный",
+      "size": "Средний"
+    },
+    {
+      "id": 3,
+      "filename": "лотос.png",
+      "alt": "Лотос",
+      "width": 136,
+      "height": 92,
+      "type": "Растения",
+      "complexity": "Несложный",
+      "size": "Маленький"
+    },
+    {
+      "id": 4,
+      "filename": "роза.png",
+      "alt": "Роза",
+      "width": 136,
+      "height": 92,
+      "type": "Растения",
+      "complexity": "Сложный",
+      "size": "Маленький"
+    },
+    {
+      "id": 5,
+      "filename": "рыба.png",
+      "alt": "Рыба",
+      "width": 136,
+      "height": 92,
+      "type": "Животные",
+      "complexity": "Несложный",
+      "size": "Средний"
+    },
+    {
+      "id": 6,
+      "filename": "свинья.png",
+      "alt": "Свинья",
+      "width": 136,
+      "height": 92,
+      "type": "Животные",
+      "complexity": "Несложный",
+      "size": "Большой"
+    },
+    {
+      "id": 7,
+      "filename": "лодка.png",
+      "alt": "Лодка",
+      "width": 136,
+      "height": 92,
+      "type": "Предметы",
+      "complexity": "Несложный",
+      "size": "Маленький"
+    },
+    {
+      "id": 8,
+      "filename": "коробка.png",
+      "alt": "Коробка",
+      "width": 136,
+      "height": 92,
+      "type": "Предметы",
+      "complexity": "Несложный",
+      "size": "Большой"
+    }
+  ],
+  "basic": [
+    {
+      "id": 1,
+      "filename": "воздушный-змей.png",
+      "alt": "Воздушный змей",
+      "width": 317,
+      "height": 351
+    },
+    {
+      "id": 2,
+      "filename": "дверь.png",
+      "alt": "Дверь",
+      "width": 317,
+      "height": 309
+    },
+    {
+      "id": 3,
+      "filename": "книга.png",
+      "alt": "Книга",
+      "width": 250,
+      "height": 188
+    },
+    {
+      "id": 4,
+      "filename": "треугольник.png",
+      "alt": "Треугольник",
+      "width": 250,
+      "height": 188
+    }
+  ]
+}

@@ -1,42 +1,114 @@
+import { useState, useEffect } from "react";
+import { fetchFiguresFiltered } from "../../api";
+
 function FiguresPage() {
-  const figures = ["Журавль", "Лиса", "Лотос", "Роза", "Рыба", "Свинья"];
+
+  const [filterIsVisible, setFilterIsVisible] = useState(false);
+  const [filter, setFilter] = useState({});
+  const [figures, setPictures] = useState([]);
+
+  useEffect(() => {
+
+    async function fetchPictures() {
+      try {
+        const data = await fetchFiguresFiltered(filter);
+        setPictures(data);
+      } catch (error) {
+        console.error("Error fetching pictures:", error);
+      }
+    }
+    fetchPictures();
+  }, [filter]);
+
+  const filterData = (criteria, e) => {
+    const value = e.target.value;
+    if (optionsDefault.includes(value)) {
+      const newFilter = { ...filter };
+      delete newFilter[criteria];
+      setFilter(newFilter);
+      return;
+    }
+    setFilter({ ...filter, ...{ [criteria]: value } });
+  };
+  const optionsDefault = ["Tип фигуры", "Сложность", "Размер"];
+  const FilterItem = ({ options, criteria }) => {
+    return (
+      <select
+        value={filter[criteria] || options[0].value}
+        onChange={(e) => filterData(criteria, e)}
+        className="px-3 py-1 bg-transparent"
+      >
+        {options.map((item) => (
+          <option key={item.value} value={item.value}>
+            {" "}
+            {item.value}
+          </option>
+        ))}
+      </select>
+    );
+  };
 
   return (
     <>
-      <section className="mb-6 space-y-3">
-        <div className="flex flex-col md:flex-row gap-3 md:items-center">
-          <label className="text-sm font-medium">Фильтр</label>
-          <input
-            type="text"
-            className="w-full md:w-64 rounded-full border border-black/10 px-3 py-1 text-sm bg-white/80"
-            placeholder="Поиск фигур..."
+      <section className="pt-[27px] md:flex-row flex gap-4">
+        <div className="flex gap-3">
+          Фильтр{" "}
+          <img
+            src="/images/icons/filter.png"
+            alt="filter icon"
+            onClick={() => setFilterIsVisible(!filterIsVisible)}
           />
         </div>
-        <div className="flex flex-wrap gap-2 text-xs md:text-sm">
-          <select className="px-3 py-1 rounded-full bg-white/80 border border-black/10">
-            <option>Тип фигуры</option>
-          </select>
-          <select className="px-3 py-1 rounded-full bg-white/80 border border-black/10">
-            <option>Сложность</option>
-          </select>
-          <select className="px-3 py-1 rounded-full bg-white/80 border border-black/10">
-            <option>Размер</option>
-          </select>
-        </div>
+        {/* Фильтры: */}
+        {filterIsVisible && (
+          <div className="flex flex-wrap bg-[#E4D2D8] gap-2 text-xs md:text-sm">
+            <FilterItem
+              criteria="type"
+              options={[
+                { value: optionsDefault[0] },
+                { value: "Животные" },
+                { value: "Растения" },
+                { value: "Предметы" },
+              ]}
+            />
+            <FilterItem
+              criteria="complexity"
+              options={[
+                { value: optionsDefault[1] },
+                { value: "Несложный" },
+                { value: "Сложный" },
+              ]}
+            />
+            <FilterItem
+              criteria="size"
+              options={[
+                { value: optionsDefault[2] },
+                { value: "Маленький" },
+                { value: "Средний" },
+                { value: "Большой" },
+              ]}
+            />
+            {/* filter: {JSON.stringify(filter)} */}
+          </div>
+        )}
       </section>
 
-      <section>
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {figures.map((name) => (
-            <div
-              key={name}
-              className="bg-white/80 rounded-xl p-3 flex flex-col gap-2 shadow-sm"
-            >
-              <div className="w-full aspect-video bg-gray-300 rounded" />
-              <div className="text-sm font-semibold text-center">{name}</div>
+      <section className="px-12 py-5">
+        <div className="grid gap-y-14 gap-x-[18vh] sm:grid-cols-2">
+          {figures.map((figure) => (
+            <div key={figure.alt} className="flex justify-between">
+              <div className="text-[32px] font-small-caps">{figure.alt}</div>
+              <img
+                src={`/images/all-figures/${figure.filename}`}
+                style={{ width: "136px", height: "auto" }}
+                alt={figure.alt}
+                className="w-full h-auto"
+              />
             </div>
-          ))}
+          ))
+        }
         </div>
+        {figures.length === 0 && <h3 className="text-center py-12">Фигур нет</h3>}
       </section>
     </>
   );
