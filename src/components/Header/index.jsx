@@ -1,9 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { SearchContext } from "../../searchContext";
+import { searchItem } from "../../api";
 
-function Header({ current, onChange }) {
-  const btn =
-    "px-3 py-1 text-sm md:text-base rounded-full hover:bg-white/60 transition";
-  const active = "bg-white/80 font-semibold";
+function Header() {
+  const { setSearchQuery, setSearchResults } = useContext(SearchContext);
+  const navigate = useNavigate();
+  async function searchTargetItem(e) {
+    if (e.key === "Enter") {
+      console.log("Search input value:", e.target.value, e.key);
+      const value = e.target.value.trim();
+      if (!value) return;
+
+      console.log("Search input value:", value, e.key);
+
+      try {
+        const results = await searchItem(value);
+        console.log("Search results:", results);
+
+        setSearchQuery(value);
+        setSearchResults(results);
+
+        navigate("/search");
+      } catch (error) {
+        console.error("Error during search:", error);
+      }
+    }
+  }
 
   return (
     <header>
@@ -15,11 +38,15 @@ function Header({ current, onChange }) {
           </div>
         </Link>
         <nav className="flex gap-[38px] mb-4 max-lg:hidden">
-          <Link to="/figures">Все фигуры</Link>
+          <Link to="/all-figures">Все фигуры</Link>
           <Link to="/basic-forms">Базовые формы</Link>
           <div className="flex gap-3">
             <span>Поиск</span>
-            <input className="h-[21px] rounded-md" type="search" />
+            <input
+              onKeyDown={searchTargetItem}
+              className="h-[21px] rounded-md px-2"
+              type="search"
+            />
           </div>
         </nav>
       </div>

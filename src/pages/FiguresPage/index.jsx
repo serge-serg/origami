@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { fetchFiguresFiltered } from "../../api";
 
 function FiguresPage() {
-
   const [filterIsVisible, setFilterIsVisible] = useState(false);
   const [filter, setFilter] = useState({});
   const [figures, setPictures] = useState([]);
@@ -88,7 +88,6 @@ function FiguresPage() {
                 { value: "Большой" },
               ]}
             />
-            {/* filter: {JSON.stringify(filter)} */}
           </div>
         )}
       </section>
@@ -97,7 +96,7 @@ function FiguresPage() {
         <div className="grid gap-y-14 gap-x-[18vh] sm:grid-cols-2">
           {figures.map((figure) => (
             <div key={figure.alt} className="flex justify-between">
-              <div className="text-[32px] font-small-caps">{figure.alt}</div>
+              <Link to={`/instruction/${figure.alt}`} className="text-[32px] font-small-caps">{figure.alt}</Link>
               <img
                 src={`/images/all-figures/${figure.filename}`}
                 style={{ width: "136px", height: "auto" }}
