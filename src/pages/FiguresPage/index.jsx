@@ -1,18 +1,51 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchFiguresFiltered } from "../../api";
 
+const initialState = {
+  filterIsVisible: false,
+  filter: {},
+  figures: [],
+};
+
+const filterReducer = (state, action) => {
+  switch (action.type) {
+    case "TOGGLE_FILTER":
+      return { ...state, filterIsVisible: !state.filterIsVisible };
+
+    case "UPDATE_FILTER": {
+      const { criteria, value } = action.payload;
+      const optionsDefault = ["Tип фигуры", "Сложность", "Размер"];
+      
+      if (optionsDefault.includes(value)) {
+        const newFilter = { ...state.filter };
+        delete newFilter[criteria];
+        return { ...state, filter: newFilter };
+      }
+      
+      return {
+        ...state,
+        filter: { ...state.filter, [criteria]: value },
+      };
+    }
+
+    case "SET_FIGURES":
+      return { ...state, figures: action.payload };
+
+    default:
+      return state;
+  }
+};
+
 function FiguresPage() {
-  const [filterIsVisible, setFilterIsVisible] = useState(false);
-  const [filter, setFilter] = useState({});
-  const [figures, setPictures] = useState([]);
+  const [state, dispatch] = useReducer(filterReducer, initialState);
+  const { filterIsVisible, filter, figures } = state;
 
   useEffect(() => {
-
     async function fetchPictures() {
       try {
         const data = await fetchFiguresFiltered(filter);
-        setPictures(data);
+        dispatch({ type: "SET_FIGURES", payload: data });
       } catch (error) {
         console.error("Error fetching pictures:", error);
       }
@@ -20,22 +53,18 @@ function FiguresPage() {
     fetchPictures();
   }, [filter]);
 
-  const filterData = (criteria, e) => {
-    const value = e.target.value;
-    if (optionsDefault.includes(value)) {
-      const newFilter = { ...filter };
-      delete newFilter[criteria];
-      setFilter(newFilter);
-      return;
-    }
-    setFilter({ ...filter, ...{ [criteria]: value } });
+  const handleFilterChange = (criteria, e) => {
+    dispatch({
+      type: "UPDATE_FILTER",
+      payload: { criteria, value: e.target.value },
+    });
   };
   const optionsDefault = ["Tип фигуры", "Сложность", "Размер"];
   const FilterItem = ({ options, criteria }) => {
     return (
       <select
         value={filter[criteria] || options[0].value}
-        onChange={(e) => filterData(criteria, e)}
+        onChange={(e) => handleFilterChange(criteria, e)}
         className="px-3 py-1 bg-transparent"
       >
         {options.map((item) => (
@@ -56,7 +85,7 @@ function FiguresPage() {
           <img
             src="/images/icons/filter.png"
             alt="filter icon"
-            onClick={() => setFilterIsVisible(!filterIsVisible)}
+            onClick={() => dispatch({ type: "TOGGLE_FILTER" })}
           />
         </div>
         {/* Фильтры: */}
